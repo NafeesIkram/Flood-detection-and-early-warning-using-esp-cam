@@ -1,6 +1,12 @@
 # Flood Detection and Early Warning using ESP Cam & Computer Vision
+![Prototype](https://img.shields.io/badge/Status-Prototype-orange)
+![University Project](https://img.shields.io/badge/Type-University%20Project-blue)
+![Python](https://img.shields.io/badge/Python-3.x-maroon)
+![OpenCV](https://img.shields.io/badge/OpenCV-Computer%20Vision-green)
+![ESP32-CAM](https://img.shields.io/badge/Hardware-ESP32--CAM-yellow)
+![GSM](https://img.shields.io/badge/Alert-GSM-red)
 
-A university project prototype for detecting simulated flood conditions using an **ESP32-CAM, computer vision, and a GSM module**.
+This is my university project prototype for detecting simulated flood conditions using an **ESP32-CAM, computer vision, and a GSM module**.
 
 The system demonstrates how a camera-based flood monitoring system can identify a simulated flood area and provide an **early warning through an automated phone call** when the detected level reaches a critical threshold.
 
