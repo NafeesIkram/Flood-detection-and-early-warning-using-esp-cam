@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Flood Level Monitoring
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <h1>
+        Flood Level Monitoring using Computer Vision
+    </h1>
+
+
+    <!-- ======================================
+         Connect Camera
+    ======================================= -->
+
+    <div class="connect-box">
+
+        <input
+            type="text"
+            id="cameraUrl"
+            placeholder="http://192.168.0.114:81/stream"
+        >
+
+
+        <button id="connectBtn">
+
+            Connect Camera
+
+        </button>
+
+
+        <button id="settingsBtn">
+
+            ⚙ Settings
+
+        </button>
+
+    </div>
+
+
+    <!-- ======================================
+         Video Section
+    ======================================= -->
+
+    <div class="video-container">
+
+
+        <div class="video-card">
+
+            <h2>
+                Original Camera
+            </h2>
+
+            <img id="videoFeed">
+
+        </div>
+
+
+        <div class="video-card">
+
+            <h2>
+                Black Detection
+            </h2>
+
+            <img id="maskFeed">
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ======================================
+         Information
+    ======================================= -->
+
+    <div class="info">
+
+
+        <!-- Flood Percentage -->
+
+        <div class="box">
+
+            <h3>
+                Flood Percentage
+            </h3>
+
+            <h2 id="percentage">
+
+                0%
+
+            </h2>
+
+        </div>
+
+
+        <!-- Risk -->
+
+        <div class="box">
+
+            <h3>
+                Risk Level
+            </h3>
+
+            <h2 id="risk">
+
+                Waiting...
+
+            </h2>
+
+        </div>
+
+
+        <!-- Call Options -->
+
+        <div class="box">
+
+            <h3>
+                Call Options
+            </h3>
+
+
+            <div class="toggle-group">
+
+
+                <!-- Twilio -->
+
+                <div class="toggle-row">
+
+                    <span>
+                        Twilio Call
+                    </span>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="twilioCall"
+                        >
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- GSM -->
+
+                <div class="toggle-row">
+
+                    <span>
+                        GSM Call
+                    </span>
+
+
+                    <label class="switch">
+
+                        <input
+                            type="checkbox"
+                            id="gsmCall"
+                        >
+
+                        <span class="slider"></span>
+
+                    </label>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<!-- ======================================
+     Settings Modal
+======================================= -->
+
+<div
+    class="modal"
+    id="settingsModal"
+>
+
+
+    <div class="modal-content">
+
+
+        <h2>
+            Detection Settings
+        </h2>
+
+
+        <!-- ==================================
+             Black Threshold
+        =================================== -->
+
+        <label>
+
+            Black Threshold
+
+        </label>
+
+
+        <input
+            type="range"
+            id="thresholdSlider"
+            min="0"
+            max="200"
+            value="60"
+        >
+
+
+        <span id="thresholdValue">
+
+            60
+
+        </span>
+
+
+        <!-- ==================================
+             Minimum Contour Area
+        =================================== -->
+
+        <label>
+
+            Minimum Contour Area
+
+        </label>
+
+
+        <input
+            type="range"
+            id="areaSlider"
+            min="100"
+            max="5000"
+            step="100"
+            value="1500"
+        >
+
+
+        <span id="areaValue">
+
+            1500
+
+        </span>
+
+
+        <!-- ==================================
+             Critical Call
+        =================================== -->
+
+        <label>
+
+            Critical Call %
+
+        </label>
+
+
+        <input
+            type="range"
+            id="criticalSlider"
+            min="50"
+            max="100"
+            value="95"
+        >
+
+
+        <span id="criticalValue">
+
+            95
+
+        </span>
+
+
+        <!-- ==================================
+             GSM Settings
+        =================================== -->
+
+        <div class="settings-divider"></div>
+
+
+        <h2>
+
+            GSM Call Settings
+
+        </h2>
+
+
+        <label>
+
+            GSM Phone Number
+
+        </label>
+
+
+        <input
+            type="text"
+            id="gsmPhone"
+            placeholder="017XXXXXXXX"
+        >
+
+
+        <label>
+
+            GSM COM Port
+
+        </label>
+
+
+        <input
+            type="text"
+            id="gsmPort"
+            placeholder="COM6"
+        >
+
+
+        <label>
+
+            GSM Baud Rate
+
+        </label>
+
+
+        <input
+            type="text"
+            id="gsmBaudrate"
+            value="115200"
+        >
+
+
+        <button
+            id="saveGsmSettings"
+        >
+
+            Save GSM Settings
+
+        </button>
+
+
+        <button
+            id="closeSettings"
+        >
+
+            Close
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+<script
+    src="{{ url_for('static', filename='script.js') }}"
+></script>
+
+
+</body>
+
+</html>

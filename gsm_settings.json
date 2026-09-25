@@ -1,0 +1,5 @@
+{
+    "phone": "YOUR_PHONE_NUMBER",
+    "port": "COM6",
+    "baudrate": 115200
+}
